@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/dashboard"
+            android:icon="@drawable/ic_dashboard"
+            android:title="Dash Board" />
+        <item
+            android:id="@+id/stock"
+            android:icon="@drawable/stockimg"
+            android:title="Stock Managment" />
+        <item
+            android:id="@+id/shop"
+            android:icon="@drawable/ic_shops"
+            android:title="Shop Details" />
+        <item
+            android:id="@+id/nav_generate"
+            android:icon="@drawable/ic_generate_bill"
+            android:title="Generate Bill" />
+        <item
+            android:id="@+id/nav_view"
+            android:icon="@drawable/ic_view_bill"
+            android:title="View Bill" />
+        <item
+            android:id="@+id/nav_replacement"
+            android:icon="@drawable/ic_find_replace"
+            android:title="Replacement" />
+    </group>
+
+    <item android:title="Communicate">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/ic_menu_share"
+                android:title="About" />
+            <item
+                android:id="@+id/nav_send"
+                android:icon="@drawable/ic_menu_send"
+                android:title="Contact" />
+        </menu>
+    </item>
+
+</menu>

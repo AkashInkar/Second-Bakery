@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="#ffe0b2"
+    android:layout_height="wrap_content"
+    tools:context=".activity.TotalShopsActivity">
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_marginTop="20px"
+        android:id="@+id/s_review"
+        tools:listitem="@layout/shoplist"
+        android:layout_below="@id/addshop"
+        android:layout_height="wrap_content">
+    </android.support.v7.widget.RecyclerView>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#8d6e63"
+        android:layout_margin="10dp"
+        android:textColor="#ffe0b2"
+        android:textAllCaps="false"
+        android:text="Add Shop"
+        android:id="@+id/addshop"
+
+        />
+
+</RelativeLayout>
