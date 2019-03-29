@@ -16,17 +16,20 @@
             android:layout_height="wrap_content"
            android:padding="10dp"
             android:id="@+id/i_name"
+
             android:hint="Enter the name"/>
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"
+            android:inputType="number"
             android:id="@+id/i_price"
             android:hint="Enter the price"/>
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"
+            android:inputType="number"
             android:id="@+id/i_quantity"
             android:hint="Enter the quantity"/>
         <Button

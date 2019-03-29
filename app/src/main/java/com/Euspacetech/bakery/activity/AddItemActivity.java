@@ -3,6 +3,7 @@ package com.Euspacetech.bakery.activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -44,14 +45,21 @@ public class AddItemActivity extends AppCompatActivity {
                 String f_price = price.getText().toString().trim();
                 String f_quantity = quantity.getText().toString().trim();
 
-                ItemDetail itemDetail = new ItemDetail(f_name,f_price,f_quantity);
-                DBHelper dbHelper = new DBHelper(AddItemActivity.this);
-
-                boolean isAddeds = dbHelper.addItem(itemDetail);
-
-                if (isAddeds)
+                if(TextUtils.isEmpty(f_name) || TextUtils.isEmpty(f_price)||TextUtils.isEmpty(f_quantity))
                 {
                     Toast.makeText(getApplicationContext(),"Data is Added " ,Toast.LENGTH_SHORT).show();
+                }
+                else {
+
+
+                    ItemDetail itemDetail = new ItemDetail(f_name, f_price, f_quantity);
+                    DBHelper dbHelper = new DBHelper(AddItemActivity.this);
+
+                    boolean isAddeds = dbHelper.addItem(itemDetail);
+
+                    if (isAddeds) {
+                        Toast.makeText(getApplicationContext(), "Data is Added ", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });

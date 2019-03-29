@@ -6,9 +6,11 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.Euspacetech.bakery.model.AddShop;
 import com.Euspacetech.bakery.model.Billing_Details;
+import com.Euspacetech.bakery.model.Cart;
 import com.Euspacetech.bakery.model.ItemDetail;
 
 import java.util.ArrayList;
@@ -58,12 +60,11 @@ Context context;
     public static final String DATE = "date";
 
 
-    public DBHelper( Context context) {
+    public DBHelper( Context context)
+    {
         super(context, DB_NAME, null, DB_VERSION);
 
     }
-
-
 
 
     @Override
@@ -116,19 +117,46 @@ Context context;
 
 
     // add the data for billing
-    public boolean forBilling(Billing_Details billingDetails)
+    public void forBilling(Cart cart,Context context)
     {
         SQLiteDatabase database = getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(B_ORDER_NO,billingDetails.getOrder_no());
-        values.put(B_ITEM_NAME,billingDetails.getItem_name());
-        values.put(B_COUNT,billingDetails.getItem_count());
-        long add  = database.insert(BILL_Details,null,values);
-        database.close();
-        return add>0;
+        values.put(B_ITEM_NAME,cart.getItemname());
+        values.put(B_COUNT,cart.getItemquantity());
 
+        long add = database.insert(BILL_Details,null,values);
+        Toast.makeText(context,"Data is Stored", Toast.LENGTH_SHORT).show();
+        database.close();
+      /*  return add>0;*/
 
     }
+
+
+
+    public long getCount()
+    {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("select count(" + QUANTITY + ") from " + ITEM_DETAILS,null);
+        int count = 0;
+        if (cursor!=null && cursor.getCount()>0)
+        {
+            cursor.moveToFirst();
+            count = cursor.getInt(0);
+        }
+        cursor.close();
+        db.close();
+        return count;
+    }
+
+
+    public void getvalue()
+    {
+        long count = getCount();
+    }
+
+
+
+
 
     //count for item details table in hiw many record are stord in android studio
     public long getProfilesCount() {
@@ -143,6 +171,8 @@ Context context;
         db.close();
         return count;
     }
+
+
     //view the data
     public List<ItemDetail> getAllItem()
     {
@@ -169,6 +199,7 @@ Context context;
         }
         return itemDetails;
     }
+
 
     //add shop from heres
     public boolean addShop(AddShop addShop)

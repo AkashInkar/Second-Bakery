@@ -1,50 +1,65 @@
 package com.Euspacetech.bakery.activity;
 
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
-
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
+import android.widget.TextView;
 import com.Euspacetech.bakery.R;
+import com.Euspacetech.bakery.adapter.CartAdapter;
 import com.Euspacetech.bakery.database.DBHelper;
-import com.Euspacetech.bakery.model.Billing_Details;
+import com.Euspacetech.bakery.model.Cart;
+import com.Euspacetech.bakery.model.ItemDetail;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
 
 public class CartActivity extends AppCompatActivity {
-    EditText edtname,edtquantity,edtnumber;
-    Button btnsave;
+   TextView sdate;
+   Cart cart;
+   RecyclerView recyclerView;
+   DBHelper dbHelper;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
+        sdate =findViewById(R.id.cartdate);
+        String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+        sdate.setText(date);
 
-        edtname = findViewById(R.id.edtname);
-        edtquantity = findViewById(R.id.edtquantity);
-        edtnumber = findViewById(R.id.edtno);
+        recyclerView = findViewById(R.id.cartrview);
+        recyclerView.setLayoutManager( new LinearLayoutManager(this));
 
-        btnsave = findViewById(R.id.btncsave);
-        btnsave.setOnClickListener(new View.OnClickListener() {
+        DBHelper dbHelper = new DBHelper(CartActivity.this);
+        final List<ItemDetail> carts = dbHelper.getAllItem();
+
+        final CartAdapter adapter = new CartAdapter(carts,dbHelper);
+        recyclerView.setAdapter(adapter);
+
+
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT) {
             @Override
-            public void onClick(View v) {
-                Toast.makeText(getApplicationContext(),"Demo for the test",Toast.LENGTH_SHORT).show();
-                String name = edtname.getText().toString().trim();
-                String quantity  = edtquantity.getText().toString().trim();
-                String number = edtnumber.getText().toString().trim();
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder viewHolder1) {
+                return false;
+            }
 
-                Billing_Details billing_details = new Billing_Details(number,name,quantity);
-
-                DBHelper dbHelper = new DBHelper(CartActivity.this);
-
-                boolean isadd = dbHelper.forBilling(billing_details);
-                if (isadd)
-                {
-                    Toast.makeText(getApplicationContext(), "Data is added", Toast.LENGTH_SHORT).show();
-                }
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int i)
+            {
+                carts.remove(viewHolder.getAdapterPosition());
+                adapter.notifyDataSetChanged();
 
             }
-        });
+        }).attachToRecyclerView(recyclerView);
+
+
+
     }
+
 }

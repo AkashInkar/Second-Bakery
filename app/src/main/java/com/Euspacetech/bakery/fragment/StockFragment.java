@@ -4,9 +4,11 @@ package com.Euspacetech.bakery.fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -104,11 +106,25 @@ public class StockFragment extends Fragment {
         recyclerView = view.findViewById(R.id.rview);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         DBHelper dbHelper = new DBHelper(getContext());
-        List<ItemDetail> itemDetails = dbHelper.getAllItem();
+        final List<ItemDetail> itemDetails = dbHelper.getAllItem();
 
-        StockAdapter adapter = new StockAdapter( itemDetails, dbHelper);
+        final StockAdapter adapter = new StockAdapter( itemDetails, dbHelper);
         recyclerView.setAdapter(adapter);
 
+         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT) {
+             @Override
+             public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder viewHolder1) {
+                 return false;
+             }
+
+             @Override
+             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
+                 itemDetails.remove(viewHolder.getAdapterPosition());
+                 adapter.notifyDataSetChanged();
+
+
+             }
+         }).attachToRecyclerView(recyclerView);
 
         return view;
     }
