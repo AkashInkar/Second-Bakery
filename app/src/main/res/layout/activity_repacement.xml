@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.RepacementActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:id="@+id/textinput"
+            android:layout_height="wrap_content">
+            <android.support.design.widget.TextInputEditText
+                android:layout_width="match_parent"
+                android:textColorHint="@color/colorPrimary"
+                android:textColor="#C52525"
+                android:textColorHighlight="#131212"
+                android:id="@+id/replace_name"
+
+                android:layout_height="wrap_content"
+                android:hint="Replace Name" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <android.support.design.widget.TextInputEditText
+                android:layout_width="match_parent"
+                android:textColorHint="@color/colorPrimary"
+                android:textColor="#ffff"
+                android:textColorHighlight="#131212"
+                android:layout_height="wrap_content"
+                android:id="@+id/replace_price"
+                android:hint="Replace Price" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <android.support.design.widget.TextInputEditText
+                android:layout_width="match_parent"
+                android:textColorHint="@color/colorPrimary"
+                android:textColor="#ffff"
+                android:textColorHighlight="#131212"
+                android:id="@+id/replace_quantity"
+                android:layout_height="wrap_content"
+                android:hint="Replace Quantity" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <android.support.design.widget.TextInputEditText
+                android:layout_width="match_parent"
+                android:textColorHint="@color/colorPrimary"
+                android:textColor="#ffff"
+                android:textColorHighlight="#131212"
+                android:id="@+id/replace_reason"
+                android:layout_height="wrap_content"
+                android:hint="Reason" />
+
+        </android.support.design.widget.TextInputLayout>
+
+
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/r_update"
+            android:onClick="updateData"
+            android:text="Replace"/>
+
+
+    </LinearLayout>
+
+</RelativeLayout>

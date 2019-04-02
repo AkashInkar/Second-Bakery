@@ -14,6 +14,9 @@ import com.Euspacetech.bakery.model.AddShop;
 public class AddShopActivity extends AppCompatActivity {
     EditText edtname,edtnumber,edtaddress;
     Button btnsave;
+    String name=null;
+    String number=null;
+    String address=null;
 
 
     @Override
@@ -25,20 +28,42 @@ public class AddShopActivity extends AppCompatActivity {
         edtaddress = findViewById(R.id.a_s_address);
         btnsave = findViewById(R.id.a_s_btnsave);
 
+
         btnsave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String name = edtname.getText().toString().trim();
-                String number  = edtnumber.getText().toString().trim();
-                String address = edtaddress.getText().toString().trim();
+
+
+                if(name==null)
+                {
+                    edtname.setError("please enter the name");
+                }else{
+                    name = edtname.getText().toString().trim();
+                }
+                    if(number==null)
+                {
+                    edtnumber.setError("please enter the name");
+                }else{
+                    number = edtnumber.getText().toString().trim();
+                }if(address==null)
+                {
+                    edtaddress.setError("please enter the name");
+                }else{
+                    address = edtaddress.getText().toString().trim();
+                }
 
                 AddShop addShop = new AddShop(name,number,address);
-                DBHelper dbHelper = new DBHelper(AddShopActivity.this);
-                boolean data = dbHelper.addShop(addShop);
-                if (data)
-                {
-                    Toast.makeText(getApplicationContext(),"Shop is add",Toast.LENGTH_SHORT).show();
-                }
+                    DBHelper dbHelper = new DBHelper(AddShopActivity.this);
+                    boolean data = dbHelper.addShop(addShop);
+
+                    if (data)
+                    {
+                        Toast.makeText(getApplicationContext(),"Shop is add",Toast.LENGTH_SHORT).show();
+                    }
+                    edtname.setText("");
+                    edtnumber.setText("");
+                    edtaddress.setText("");
+
             }
         });
 

@@ -33,14 +33,19 @@ public class CartActivity extends AppCompatActivity {
         String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
         sdate.setText(date);
 
+        int shopId = getIntent().getIntExtra(DBHelper.SHOP_ID,1);
+
         recyclerView = findViewById(R.id.cartrview);
         recyclerView.setLayoutManager( new LinearLayoutManager(this));
 
         DBHelper dbHelper = new DBHelper(CartActivity.this);
         final List<ItemDetail> carts = dbHelper.getAllItem();
 
-        final CartAdapter adapter = new CartAdapter(carts,dbHelper);
+        final CartAdapter adapter = new CartAdapter(shopId,carts,dbHelper);
         recyclerView.setAdapter(adapter);
+
+
+
 
 
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT) {

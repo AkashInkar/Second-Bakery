@@ -31,7 +31,7 @@ public class CartViewHolder extends RecyclerView.ViewHolder implements View.OnCl
         itequantity = itemView.findViewById(R.id.edtcart);
         btnsave = itemView.findViewById(R.id.cartsave);
 
-        btnsave.setOnClickListener(new View.OnClickListener() {
+   /*     btnsave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String name = itemname.getText().toString().trim();
@@ -39,14 +39,14 @@ public class CartViewHolder extends RecyclerView.ViewHolder implements View.OnCl
                 String itemQuantity = itequantity .getText().toString().trim();
 
                 Cart cart = new Cart(name,itemQuantity);
-               /*// Cart cart = new Cart(name,itemQuantity);
-                ItemDetail itemDetail = new ItemDetail(name,quantity,itemQuantity);*/
+            Cart cart = new Cart(name,itemQuantity);
+                ItemDetail itemDetail = new ItemDetail(name,quantity,itemQuantity);*//*
 
                 DBHelper dbHelper = new DBHelper(context);
                 dbHelper.forBilling(cart,context);
 
             }
-        });
+        });*/
     }
 
     @Override

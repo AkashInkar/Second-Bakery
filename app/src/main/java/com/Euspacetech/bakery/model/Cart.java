@@ -2,14 +2,16 @@ package com.Euspacetech.bakery.model;
 
 public class Cart {
     String itemname;
-    String id;
+    String Shopid;
     String order_no;
     String itemquantity;
     String createdat;
+    String shop_id;
 
-    public Cart(String itemname, String itemquantity) {
+    public Cart(String itemname, String itemquantity,String Shopid) {
         this.itemname = itemname;
         this.itemquantity = itemquantity;
+        this.Shopid=Shopid;
     }
 
     public String getItemname() {
@@ -21,11 +23,11 @@ public class Cart {
     }
 
     public String getId() {
-        return id;
+        return Shopid;
     }
 
     public void setId(String id) {
-        this.id = id;
+        this.Shopid = id;
     }
 
     public String getOrder_no() {

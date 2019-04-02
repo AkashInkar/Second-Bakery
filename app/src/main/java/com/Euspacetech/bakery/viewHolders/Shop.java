@@ -33,8 +33,8 @@ public class Shop extends RecyclerView.ViewHolder {
        cardView.setOnCreateContextMenuListener(new View.OnCreateContextMenuListener() {
            @Override
            public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-               menu.add(121,v.getId(),0,"Delete Item");
-               menu.add(122,v.getId(),0,"Add Data");
+               menu.add(121,(int) itemView.getTag(),0,"Delete Item");
+               menu.add(122,(int) itemView.getTag(),0,"Add Data");
            }
        });
     }

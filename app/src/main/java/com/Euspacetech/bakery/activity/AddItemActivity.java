@@ -1,5 +1,6 @@
 package com.Euspacetech.bakery.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,6 +18,7 @@ import com.Euspacetech.bakery.model.ItemDetail;
 public class AddItemActivity extends AppCompatActivity {
     EditText name, price, quantity;
     Button btnsave,btns;
+    Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

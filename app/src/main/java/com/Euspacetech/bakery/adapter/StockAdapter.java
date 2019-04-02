@@ -36,8 +36,8 @@ public class StockAdapter extends RecyclerView.Adapter<stockViewholder> {
     public void onBindViewHolder(@NonNull stockViewholder holder, int position) {
         ItemDetail itemDetail = itemDetailList.get(position);
         holder.textView1.setText(itemDetail.getName());
-        holder.textView2.setText(itemDetail.getQuantity());
-        holder.textView3.setText(itemDetail.getPrice());
+        holder.textView2.setText(itemDetail.getPrice());
+        holder.textView3.setText(itemDetail.getQuantity());
 
     }
 
